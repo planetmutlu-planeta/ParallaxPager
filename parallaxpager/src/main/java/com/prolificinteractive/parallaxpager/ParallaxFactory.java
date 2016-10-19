@@ -38,6 +38,7 @@ public class ParallaxFactory {
     return view;
   }
 
+  @SuppressWarnings("ResourceType")
   private View onViewCreatedInternal(View view, final Context context, AttributeSet attrs) {
 
     int[] attrIds =

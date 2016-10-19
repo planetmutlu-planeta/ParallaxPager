@@ -40,10 +40,10 @@ artifacts {
   archives androidJavadocsJar
 }
 
-signing {
-  required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
-  sign configurations.archives
-}
+//signing {
+//  required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
+//  sign configurations.archives
+//}
 
 dependencies {
   compile 'com.android.support:support-v4:24.2.1'

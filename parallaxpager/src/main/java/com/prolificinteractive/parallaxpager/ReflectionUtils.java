@@ -46,12 +46,16 @@ class ReflectionUtils {
         return null;
     }
 
-    static void invokeMethod(Object object, Method method, Object... args) {
+    @SuppressWarnings("TryWithIdenticalCatches")
+	static void invokeMethod(Object object, Method method, Object... args) {
         try {
             if (method == null) return;
             method.invoke(object, args);
-        } catch (IllegalAccessException | InvocationTargetException ignored) {
-            ignored.printStackTrace();
-        }
+		} catch (InvocationTargetException ignored) {
+			// "Identical catch clauses" to maintain compatibility for API < 19
+			ignored.printStackTrace();
+		} catch (IllegalAccessException ignored) {
+			ignored.printStackTrace();
+		}
     }
 }

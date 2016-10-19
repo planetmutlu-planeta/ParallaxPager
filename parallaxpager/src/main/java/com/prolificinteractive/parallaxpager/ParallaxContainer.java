@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -52,8 +53,17 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 		adapter.setCount(isLooping ? Integer.MAX_VALUE : pageCount);
 	}
 
-	public List<View> getParallaxViews() {
-		return parallaxViews;
+	public List<View> getParallaxViews(int page) {
+		List<View> views = new ArrayList<>(parallaxViews.size());
+		for (View view : parallaxViews) {
+			ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
+			if (tag == null || tag.index != page) {
+				continue;
+			}
+
+			views.add(view);
+		}
+		return Collections.unmodifiableList(views);
 	}
 
 	public void setupChildrenWithArray(int[] childIds) {

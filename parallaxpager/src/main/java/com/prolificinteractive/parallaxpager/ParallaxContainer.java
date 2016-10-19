@@ -52,6 +52,10 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 		adapter.setCount(isLooping ? Integer.MAX_VALUE : pageCount);
 	}
 
+	public List<View> getParallaxViews() {
+		return parallaxViews;
+	}
+
 	public void setupChildrenWithArray(int[] childIds) {
 		setupChildren(LayoutInflater.from(getContext()), childIds);
 	}

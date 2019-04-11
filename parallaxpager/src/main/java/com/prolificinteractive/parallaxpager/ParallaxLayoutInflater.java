@@ -173,7 +173,11 @@ class ParallaxLayoutInflater extends LayoutInflater {
     // We also maintain the Field reference and make it accessible which will make a pretty
     // significant difference to performance on Android 4.0+.
 
-    return view = createView(name, null, attrs);
+    // Fix to prevent null-pointer exception
+    try{
+      view = createView(name, null, attrs);
+    }catch (Exception e){}
+    return view;
 
     // If CustomViewCreation is off skip this.
     /*if (view == null && name.indexOf('.') > -1) {
